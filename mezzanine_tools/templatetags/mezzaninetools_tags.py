@@ -32,7 +32,6 @@ def get_page_children(page, model=None):
     """
     children = Page.objects.filter(parent=page)
     children = [p.get_content_model() for p in children]
-    print [c.__class__.__name__ for c in children]
     if model:
         children = [p for p in children if p.__class__.__name__ == model]
     return children
