@@ -1,4 +1,5 @@
 from django import template
+from django.template import loader
 
 from mezzanine.pages.models import Page
 
@@ -37,7 +38,7 @@ def get_page_children(page, model=None):
     return children
 
 
-@register.simple_tag
+@register.simple_tag()
 def get_top_pages(model=None):
     """
     Returns a list of pages with no parent. Pages can be filtered out by the
@@ -48,3 +49,10 @@ def get_top_pages(model=None):
     return get_page_children(page=None, model=model)
 
 
+@register.simple_tag(takes_context=True)
+def box(context, page, template_name=None):
+    template_name = template_name if template_name else'boxes/box.html'
+    template = loader.get_template(template_name)
+    context['page'] = page
+    output = template.render(context)
+    return output
