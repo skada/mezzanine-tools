@@ -31,10 +31,13 @@ def get_page_children(page, model=None):
     :param model: Optional model name string
     :return: A list of pages
     """
-    children = Page.objects.filter(parent=page)
+    children = Page.objects.published().filter(parent=page)
+    print children
     children = [p.get_content_model() for p in children]
+    print children
     if model:
         children = [p for p in children if p.__class__.__name__ == model]
+    print children
     return children
 
 
@@ -51,8 +54,12 @@ def get_top_pages(model=None):
 
 @register.simple_tag(takes_context=True)
 def box(context, page, template_name=None):
-    template_name = template_name if template_name else'boxes/box.html'
-    template = loader.get_template(template_name)
+    template_name_list = []
+    if template_name:
+        template_name_list.append('boxes/%s' % template_name)
+    template_name_list.append('boxes/%s.html' % page.slug)
+    template_name_list.append('boxes/box.html')
+    t = loader.select_template(template_name_list)
     context['page'] = page
-    output = template.render(context)
+    output = t.render(context)
     return output

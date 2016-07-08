@@ -3,7 +3,7 @@ from mezzanine.core.admin import TabularDynamicInlineAdmin
 from mezzanine.pages.admin import PageAdmin
 from mezzanine.pages.models import RichTextPage
 
-from mezzanine_tools.models import ArticleImage
+from mezzanine_tools.basic.models import ArticleImage
 
 
 class GalleryImageInline(TabularDynamicInlineAdmin):
