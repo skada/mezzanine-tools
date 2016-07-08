@@ -31,13 +31,10 @@ def get_page_children(page, model=None):
     :param model: Optional model name string
     :return: A list of pages
     """
-    children = Page.objects.published().filter(parent=page)
-    print children
+    children = Page.objects.published().filter(parent=page).order_by("_order")
     children = [p.get_content_model() for p in children]
-    print children
     if model:
         children = [p for p in children if p.__class__.__name__ == model]
-    print children
     return children
 
 
