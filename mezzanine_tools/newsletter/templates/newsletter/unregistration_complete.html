@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main %}
+
+  <span>
+    {% blocktrans with newsletter=newsletter %}You have successfully unregistered your email address {{ newsletter.email }} from the newsletter delivery.
+    {% endblocktrans %}
+  </span>
+  <a href="{% url 'home' %}">{% trans 'Back to main page' %}</a>
+{% endblock main %}

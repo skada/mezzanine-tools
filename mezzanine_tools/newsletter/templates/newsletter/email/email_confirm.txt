@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% blocktrans with newsletter=newsletter %}
+Hi!
+
+you receive this email as someone has registered the email address {{ newsletter.email }} to receive a newsletter from
+the {{ SITE }}. To confirm it was you, please click the following link {{ domain }}{{newsletter.get_activation_url}}
+
+To unsubscribe, please follow the de-registering link
+
+{% endblocktrans %}
