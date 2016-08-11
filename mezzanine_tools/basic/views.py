@@ -23,13 +23,11 @@ def reservation_send(request):
             if k != 'csrfmiddlewaretoken':
                 C['fields'].append((k,v,))
 
-        print C
-
         send_mail_template(
             addr_from=f,
             addr_to=[t, ],
             template='email/form_response',
-            subject="T",
+            subject="WEB RESERVATION REQUEST",
             context=C,
         )
 

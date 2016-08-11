@@ -1,14 +1,13 @@
 from __future__ import unicode_literals
 
 from string import punctuation
-from cartridge.shop.models import Category
+
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible, force_text
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.fields import FileField
-from mezzanine.core.models import RichText, Orderable
-from mezzanine.galleries.models import Gallery, BaseGallery
-from mezzanine.pages.models import RichTextPage, Page
+from mezzanine.core.models import Orderable
+from mezzanine.pages.models import RichTextPage
 from mezzanine.utils.models import upload_to
 
 
