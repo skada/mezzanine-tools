@@ -1,0 +1,8 @@
+{% load staticfiles mezzanine_tags %}
+    <div class="google-map">
+      {% for m in page.googlemap.marker_set.all %}
+      <div class="google-map-marker" data-icon="{% static 'images/design/map-marker.svg' %}" data-pos-lat="{{ m.lat }}" data-pos-lng="{{ m.long }}" data-title="{{ m.title }}" hidden>
+        {{ m.content|richtext_filters|safe }}
+      </div>
+      {% endfor %}
+    </div>

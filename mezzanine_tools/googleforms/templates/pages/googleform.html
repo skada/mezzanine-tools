@@ -1,0 +1,17 @@
+{% extends 'pages/page.html' %}
+
+{% load mezzanine_tags staticfiles %}
+
+{% block left %}
+    {% if page.googleform.form_before_text %}
+    {% include 'includes/googleform.html' %}
+    {% endif %}
+    {{ block.super }}
+
+    {% editable page.googleform.content %}
+    {{ page.googleform.content|richtext_filters|safe }}
+    {% endeditable %}
+    {% if not page.googleform.form_before_text %}
+    {% include 'includes/googleform.html' %}
+    {% endif %}
+{% endblock left %}

@@ -1,0 +1,33 @@
+{% extends 'pages/page.html' %}
+
+{% load mezzanine_tags staticfiles %}
+
+{% block left %}
+    {% if page.googlemap.map_before_text %}
+    {% include 'includes/googlemap.html' %}
+    {% endif %}
+    {{ block.super }}
+
+    {% editable page.googlemap.content %}
+    {{ page.googlemap.content|richtext_filters|safe }}
+    {% endeditable %}
+    {% if not page.googlemap.map_before_text %}
+    {% include 'includes/googlemap.html' %}
+    {% endif %}
+{% endblock left %}
+
+{% block extra_js %}
+		<script src="https://maps.google.com/maps/api/js?key=AIzaSyAOW-JKLfAGEZgVcVzIcvEDa-5kj2a3rjQ&amp;language=en"></script>
+		<script src="{% static 'js/jquery.gmap-coder.js' %}"></script>
+    <script>
+    jQuery(function($) {
+        jQuery('.google-map').gMapCoder(
+                {
+                  zoom: {{ page.googlemap.zoom }},
+                  center: {lat: {{ page.googlemap.lat }}, lng: {{ page.googlemap.long }}},
+                  scrollwheel: false
+                }
+        );
+    });
+    </script>
+{% endblock extra_js %}

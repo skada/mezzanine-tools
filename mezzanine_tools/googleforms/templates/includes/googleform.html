@@ -1,0 +1,8 @@
+{% load staticfiles mezzanine_tags %}
+{% spaceless %}
+<iframe src="{{ page.googleform.form_url }}"
+        {% if page.googleform.form_width %} width="{{ page.googleform.form_width }}"{% endif %}
+        {% if page.googleform.form_height %} height="{{ page.googleform.form_height }}"{% endif %}
+        frameborder="0" marginheight="0" marginwidth="0">Loading…
+</iframe>
+{% endspaceless %}
