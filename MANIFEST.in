@@ -1,1 +1,2 @@
-include *.html
+recursive-include mezzanine_tools/googleforms/templates *
+recursive-include mezzanine_tools/googlemaps/templates *
