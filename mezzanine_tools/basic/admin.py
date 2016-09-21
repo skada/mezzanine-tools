@@ -3,7 +3,7 @@ from mezzanine.core.admin import TabularDynamicInlineAdmin
 from mezzanine.pages.admin import PageAdmin
 from mezzanine.pages.models import RichTextPage
 
-from mezzanine_tools.basic.models import ArticleImage
+from mezzanine_tools.basic.models import ArticleImage, Category
 
 
 class GalleryImageInline(TabularDynamicInlineAdmin):
@@ -14,6 +14,10 @@ class GalleryImageInline(TabularDynamicInlineAdmin):
 class ArticleAdmin(PageAdmin):
     inlines = [GalleryImageInline, ]
 
+
+@admin.register(Category)
+class CategoryAdmin(PageAdmin):
+    pass
 
 admin.site.unregister(RichTextPage)
 admin.site.register(RichTextPage, ArticleAdmin)

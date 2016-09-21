@@ -7,7 +7,7 @@ from django.utils.encoding import python_2_unicode_compatible, force_text
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.fields import FileField
 from mezzanine.core.models import Orderable
-from mezzanine.pages.models import RichTextPage
+from mezzanine.pages.models import RichTextPage, Page
 from mezzanine.utils.models import upload_to
 
 
@@ -52,3 +52,21 @@ class ArticleImage(Orderable):
                             for i, s in enumerate(name)])
             self.description = name
         super(ArticleImage, self).save(*args, **kwargs)
+
+
+class Category(Page):
+
+    class Meta:
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
+
+    def get_children(self):
+        if not self.pk:
+            return []
+
+        if getattr(self, '_children_pages', None):
+            return self._children_pages
+
+        self._children_pages = Page.objects.published().filter(parent=self)
+        print self._children_pages
+        return self._children_pages
