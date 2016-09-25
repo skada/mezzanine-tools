@@ -67,6 +67,5 @@ class Category(Page):
         if getattr(self, '_children_pages', None):
             return self._children_pages
 
-        self._children_pages = Page.objects.published().filter(parent=self)
-        print self._children_pages
+        self._children_pages = Page.objects.published().filter(parent=self).order_by('_order')
         return self._children_pages
