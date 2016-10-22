@@ -54,7 +54,7 @@ class ArticleImage(Orderable):
         super(ArticleImage, self).save(*args, **kwargs)
 
 
-class Category(Page):
+class CategoryPage(Page):
 
     class Meta:
         verbose_name = _('Category')
