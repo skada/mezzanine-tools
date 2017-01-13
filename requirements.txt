@@ -1,1 +1,1 @@
-mezzanine==4.1.0
+mezzanine>=4.1.0

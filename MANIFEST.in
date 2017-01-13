@@ -1,2 +1,4 @@
 recursive-include mezzanine_tools/googleforms/templates *
 recursive-include mezzanine_tools/googlemaps/templates *
+recursive-include mezzanine_tools/newsletter/templates *
+recursive-include mezzanine_tools/newsletter/static *
