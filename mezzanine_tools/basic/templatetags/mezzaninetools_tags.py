@@ -54,7 +54,8 @@ def box(context, page, template_name=None):
     template_name_list = []
     if template_name:
         template_name_list.append('boxes/%s' % template_name)
-    template_name_list.append('boxes/%s.html' % page.slug)
+    if page and page.slug:
+        template_name_list.append('boxes/%s.html' % page.slug)
     template_name_list.append('boxes/box.html')
     t = loader.select_template(template_name_list)
     context['page'] = page
