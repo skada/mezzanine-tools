@@ -51,6 +51,7 @@ def get_top_pages(model=None):
 
 @register.simple_tag(takes_context=True)
 def box(context, page, template_name=None):
+    main_page = context['page']
     template_name_list = []
     if template_name:
         template_name_list.append('boxes/%s' % template_name)
@@ -60,4 +61,5 @@ def box(context, page, template_name=None):
     t = loader.select_template(template_name_list)
     context['page'] = page
     output = t.render(context)
+    context['page'] = main_page
     return output
