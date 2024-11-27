@@ -1,4 +1,4 @@
-from django.conf.urls import path
+from django.urls import path
 
 from mezzanine_tools.newsletter import views as newsletter_views
 
