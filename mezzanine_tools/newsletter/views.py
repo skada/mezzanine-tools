@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.template import loader
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from mezzanine.conf import settings
 

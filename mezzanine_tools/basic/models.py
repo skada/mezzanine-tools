@@ -1,23 +1,14 @@
-from __future__ import unicode_literals
-
 from string import punctuation
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible, force_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_text
+from django.utils.translation import gettext_lazy as _
 from mezzanine.core.fields import FileField
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import RichTextPage, Page
 from mezzanine.utils.models import upload_to
 
 
-# class RelatedPagesMixin(object):
-#     related_pages = models.ManyToManyField(
-#         Page,
-#     )
-
-
-@python_2_unicode_compatible
 class ArticleImage(Orderable):
 
     article = models.ForeignKey(RichTextPage, related_name="images")

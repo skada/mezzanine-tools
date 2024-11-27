@@ -1,7 +1,7 @@
 import copy
 
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from mezzanine.pages.admin import PageAdmin
 from mezzanine_tools.googleforms.models import GoogleForm
