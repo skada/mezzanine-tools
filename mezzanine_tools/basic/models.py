@@ -1,7 +1,6 @@
 from string import punctuation
 
 from django.db import models
-from django.utils.encoding import force_text
 from django.utils.translation import gettext_lazy as _
 from mezzanine.core.fields import FileField
 from mezzanine.core.models import Orderable
@@ -33,7 +32,7 @@ class ArticleImage(Orderable):
         file name.
         """
         if not self.id and not self.description:
-            name = force_text(self.file.name)
+            name = self.file.name
             name = name.rsplit("/", 1)[-1].rsplit(".", 1)[0]
             name = name.replace("'", "")
             name = "".join([c if c not in punctuation else " " for c in name])
