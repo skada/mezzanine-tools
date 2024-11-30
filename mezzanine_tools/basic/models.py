@@ -10,7 +10,7 @@ from mezzanine.utils.models import upload_to
 
 class ArticleImage(Orderable):
 
-    article = models.ForeignKey(RichTextPage, related_name="images")
+    article = models.ForeignKey(RichTextPage, related_name="images", on_delete=models.CASCADE,)
     file = FileField(_("File"), max_length=200, format="Image",
         upload_to=upload_to("article.ArticleImage.file", "articles"))
     description = models.CharField(
