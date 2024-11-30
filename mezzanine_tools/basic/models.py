@@ -1,26 +1,16 @@
-from __future__ import unicode_literals
-
 from string import punctuation
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible, force_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from mezzanine.core.fields import FileField
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import RichTextPage, Page
 from mezzanine.utils.models import upload_to
 
 
-# class RelatedPagesMixin(object):
-#     related_pages = models.ManyToManyField(
-#         Page,
-#     )
-
-
-@python_2_unicode_compatible
 class ArticleImage(Orderable):
 
-    article = models.ForeignKey(RichTextPage, related_name="images")
+    article = models.ForeignKey(RichTextPage, related_name="images", on_delete=models.CASCADE,)
     file = FileField(_("File"), max_length=200, format="Image",
         upload_to=upload_to("article.ArticleImage.file", "articles"))
     description = models.CharField(
@@ -42,7 +32,7 @@ class ArticleImage(Orderable):
         file name.
         """
         if not self.id and not self.description:
-            name = force_text(self.file.name)
+            name = self.file.name
             name = name.rsplit("/", 1)[-1].rsplit(".", 1)[0]
             name = name.replace("'", "")
             name = "".join([c if c not in punctuation else " " for c in name])

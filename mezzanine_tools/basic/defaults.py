@@ -1,5 +1,5 @@
 from mezzanine.conf import register_setting
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 register_setting(
     name="RESERV_EMAIL_FROM",

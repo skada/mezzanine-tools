@@ -1,11 +1,9 @@
-from __future__ import unicode_literals
-
 from datetime import timedelta
 from uuid import uuid4
 
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.utils import timezone
 from mezzanine.core.models import SiteRelated
 from mezzanine.conf import settings
@@ -16,7 +14,6 @@ class NewsletterManager(models.Manager):
     def get_by_code(self, code):
         now = timezone.now()
         deadline = now - timedelta(days=settings.NEWSLETTER_TIMEOUT)
-        print deadline
         queryset = self.filter(updated__gte=deadline).get(code=code)
         return queryset
 

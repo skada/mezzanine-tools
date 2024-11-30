@@ -49,9 +49,8 @@ def get_top_pages(model=None):
     return get_page_children(page=None, model=model)
 
 
-@register.simple_tag(takes_context=True)
-def box(context, page, template_name=None):
-    main_page = context['page']
+@register.simple_tag()
+def box(page, template_name=None):
     template_name_list = []
     if template_name:
         template_name_list.append('boxes/%s' % template_name)
@@ -59,7 +58,7 @@ def box(context, page, template_name=None):
         template_name_list.append('boxes/%s.html' % page.slug)
     template_name_list.append('boxes/box.html')
     t = loader.select_template(template_name_list)
-    context['page'] = page
-    output = t.render(context)
-    context['page'] = main_page
+    c = {}
+    c['page'] = page
+    output = t.render(c)
     return output
