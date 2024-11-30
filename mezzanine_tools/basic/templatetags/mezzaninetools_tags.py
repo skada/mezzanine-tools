@@ -51,6 +51,8 @@ def get_top_pages(model=None):
 
 @register.simple_tag(takes_context=True)
 def box(context, page, template_name=None):
+    print(context)
+    print(context.__class__)
     main_page = context['page']
     template_name_list = []
     if template_name:
